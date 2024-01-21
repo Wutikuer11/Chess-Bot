@@ -1,0 +1,148 @@
+import pygame
+
+pygame.init()
+
+# Set up width and height
+width = 800
+height = 800
+
+# Set up the screen
+screen = pygame.display.set_mode([width, height])
+pygame.display.set_caption('TWO PLAYER CHESS GAME')
+
+# Fonts
+font = pygame.font.Font('freesansbold.ttf', 20)
+medium_font = pygame.font.Font('freesansbold.ttf', 40)
+big_font = pygame.font.Font('freesansbold.ttf', 50)
+
+# Clock and Frames per Second
+timer = pygame.time.Clock()
+fps = 60
+
+# Define piece names and initial positions
+white_pieces = ['rook', 'knight', 'bishop', 'king', 'queen', 'bishop', 'knight', 'rook',
+                'pawn', 'pawn', 'pawn', 'pawn', 'pawn', 'pawn', 'pawn', 'pawn']
+white_locations = [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0),
+                   (0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1)]
+
+black_pieces = ['rook', 'knight', 'bishop', 'king', 'queen', 'bishop', 'knight', 'rook',
+                'pawn', 'pawn', 'pawn', 'pawn', 'pawn', 'pawn', 'pawn', 'pawn']
+black_locations = [(0, 7), (1, 7), (2, 7), (3, 7), (4, 7), (5, 7), (6, 7), (7, 7),
+                    (0, 6), (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (6, 6), (7, 6)]
+
+# Captured pieces
+captured_white = []
+captured_black = []
+
+# Turn and Selection variables
+turn_step = 0
+selection = 100
+valid_moves = []
+
+# Load images and scale them
+# (... code for loading and scaling images ...)
+
+# Lists of images for white and black pieces
+# (... code for creating lists of images ...)
+
+# List of piece names
+piece_list = ['pawn', 'queen', 'king', 'knight', 'rook', 'bishop']
+
+# Check variables/ flashing counter
+counter = 0
+winner = ''
+game_over = False
+
+# Draw the chessboard
+def draw_board():
+    # (... code for drawing the chessboard ...)
+
+# Draw pieces on the board
+def draw_pieces():
+    # (... code for drawing pieces on the board ...)
+
+# Function to check all pieces' valid options on the board
+def check_options(pieces, locations, turn):
+    # (... code for checking valid moves for all pieces ...)
+
+# Check for valid pawn moves
+def check_pawn(position, color):
+    # (... code for checking valid pawn moves ...)
+
+# Check for valid knight moves
+def check_knight(position, color):
+    # (... code for checking valid knight moves ...)
+
+# Check for valid bishop moves
+def check_bishop(position, color):
+    # (... code for checking valid bishop moves ...)
+
+# Check for valid rook moves
+def check_rook(position, color):
+    # (... code for checking valid rook moves ...)
+
+# Check for valid queen moves
+def check_queen(position, color):
+    # (... code for checking valid queen moves ...)
+
+# Check for valid king moves
+def check_king(position, color):
+    # (... code for checking valid king moves ...)
+
+# Check for valid moves for just the selected piece
+def check_valid_moves():
+    # (... code for checking valid moves for the selected piece ...)
+
+# Draw valid moves on the screen
+def draw_valid(moves):
+    # (... code for drawing valid moves on the screen ...)
+
+# Draw captured pieces on the side of the screen
+def draw_captured():
+    # (... code for drawing captured pieces ...)
+
+# Draw a flashing square around the king if in check
+def draw_check():
+    # (... code for drawing a flashing square around the king ...)
+
+# Draw game over message
+def draw_game_over():
+    # (... code for drawing the game over message ...)
+
+# Main game loop
+black_options = check_options(black_pieces, black_locations, 'black')
+white_options = check_options(white_pieces, white_locations, 'white')
+run = True
+while run:
+    timer.tick(fps)
+    if counter < 30:
+        counter += 1
+    else:
+        counter = 0
+    screen.fill('dark gray')
+    draw_board()
+    draw_pieces()
+    draw_captured()
+    draw_check()
+    if selection != 100:
+        valid_moves = check_valid_moves()
+        draw_valid(valid_moves)
+
+    # Event handling
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and not game_over:
+            # (... code for handling mouse clicks ...)
+
+        if event.type == pygame.KEYDOWN and game_over:
+            if event.key == pygame.K_RETURN:
+                # (... code for restarting the game ...)
+
+    if winner != '':
+        game_over = True
+        draw_game_over()
+
+    pygame.display.flip()
+
+pygame.quit()
